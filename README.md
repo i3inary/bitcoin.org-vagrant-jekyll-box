@@ -19,11 +19,11 @@ First thing you will need is to grab the configuration files needed for vagrant 
 
 ### 2. Clone the Bitcoin.org Website Source Code
 
-Now you will fork a fresh copy of the current [bitcoin.org repository](https://github.com/bitcoin/bitcoin.org.git) with your Github account and clone your new forked repository into the vagrant.  This step is outlined in detail 
+Now you will fork a fresh copy of the current [bitcoin.org repository](https://github.com/bitcoin/bitcoin.org.git) with your Github account and clone your new forked repository into the *bitcoin.org-vagrant-jekyll-box* directory.  This step is outlined in detail here on the [bitcoin.org README](https://github.com/bitcoin/bitcoin.org#working-with-github).
 
 *You should already be inside the bitcoin.org-vagrant-jekyll-box directory*
 
-    git clone https://github.com/Airbitz/bitcoin.org.git bitcoin.org # this should be your forked version
+    git clone https://github.com/GITHUB_USERNAME/bitcoin.org.git bitcoin.org # this should be your forked version of the officel bitcoin.org repo
     cd bitcoin.org
     git remote add upstream https://github.com/bitcoin/bitcoin.org.git
 
@@ -32,14 +32,15 @@ Now you will fork a fresh copy of the current [bitcoin.org repository](https://g
 
 *You should already be inside the bitcoin.org-vagrant-jekyll-box directory*
 
-    vagrant up
+    vagrant up && vagrant ssh
     cd /home/vagrant/bitcoin.org && bundle install
 
 ### 4. Start Your Jekyll Web Server
 
 *You should already be inside the bitcoin.org-vagrant-jekyll-box directory*
-
-    jekyll serve
+	
+	ENABLED_PLUGINS="events autocrossref" ENABLED_LANGS="en fr" make all # partial build for faster preview
+    jekyll serve --watch
     
 ## Additional Info
 
