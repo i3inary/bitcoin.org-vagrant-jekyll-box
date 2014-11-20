@@ -33,7 +33,7 @@ Now you will fork a fresh copy of the current [bitcoin.org repository](https://g
 *You should already be inside the bitcoin.org-vagrant-jekyll-box directory*
 
     vagrant up && vagrant ssh
-    cd /home/vagrant/bitcoin.org && bundle install
+    cd /home/vagrant/bitcoin.org && sudo gem install bundler && bundle install
 
 ### 4. Start Your Jekyll Web Server
 
@@ -45,3 +45,18 @@ Now you will fork a fresh copy of the current [bitcoin.org repository](https://g
 ## Additional Info
 
 Misc tips and commands to make things go a little smoother.
+
+** Virtual machine resources **
+
+    # Modify virtual machine parameters in **Vagrantfile**
+    config.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
+      v.memory = 1024
+      v.cpus = 2
+    end
+
+## TODO: HELP WANTED **
+- Need to figure out how to get jekyll to build faster...currently it takes about 6 minutes on the virtual machine running on a 2013 macbook pro.
+- Configure partial building based on files changed somehow..should not build entire project each change
+- Live reload setup
+- Use apache instead of `jekyll serve`
