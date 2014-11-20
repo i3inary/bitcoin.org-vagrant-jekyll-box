@@ -10,5 +10,14 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "install-ruby.sh", :args => "2.0.0 bundler"
 
   config.vm.synced_folder "./bitcoin.org", "/home/vagrant/bitcoin.org", :create => true
+
+
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
+    v.memory = 1024
+    v.cpus = 2
+  end
+
+
 end
 
